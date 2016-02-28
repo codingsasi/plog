@@ -1,0 +1,77 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Plog</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+<link rel="stylesheet" href="{% static "blog/style.css" %}">
+<script type="text/javascript" src="{% static 'static_jquery/js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'blog/script.js' %}"></script>
+</head>
+
+<body>
+  <div class="header row">
+    <div class="twelve columns">
+      <a href="/" class="two columns"><div class="header-tile">Plog</div></a>
+      <a href="javascript:void(0);" class="two columns right" id="signup" style="margin-left:0;">
+        <div class="header-tile">Sign Up</div>
+      </a>
+      <a href="javascript:void(0);" class="two columns right" id="login">
+        <div class="header-tile">Login</div>
+      </a>
+    </div>
+  </div>
+  <div class="content container">
+    <div class="row">
+      <div class="container">
+        {% block content %}
+        {% endblock %}
+      <div>
+    </div>
+  </div>
+</body>
+{% block login %}
+<center class="login-popup hidden" id="login-popup">
+  <a href="javascript:void(0);" id="close-login-popup"><span class="cross">X</span> Close</a>
+  <div class="login-block twelve columns">
+    <form id="login-form" action="" method="POST">
+      <div class="login-inner one-half column">
+        <div class="row">
+          <input type="text" name="username" placeholder="User Name" class="eight columns">
+        </div>
+        <div class="row">
+          <input type="password" name="password" placeholder="Password" class="eight columns">
+        </div>
+        <div class="row">
+          <input type="submit" name="login" value="Login" class="button submit six columns">
+        </div>
+      </div>
+    </form>
+  </div>
+</center>
+{% endblock %}
+{% block signup %}
+<center class="signup-popup hidden" id="signup-popup">
+  <a href="javascript:void(0);" id="close-signup-popup"><span class="cross">X</span> Close</a>
+  <div class="signup-block twelve columns">
+    <form id="signup-form" action="" method="POST">
+      <div class="signup-inner one-half column">
+        <div class="row">
+          <input type="text" name="username" placeholder="User Name" class="eight columns">
+        </div>
+        <div class="row">
+          <input type="email" name="email" placeholder="E-mail" class="eight columns">
+        </div>
+        <div class="row">
+          <input type="password" name="password" placeholder="Password" class="eight columns">
+        </div>
+        <div class="row">
+          <input type="submit" name="login" value="Login" class="button submit six columns">
+        </div>
+      </div>
+    </form>
+  </div>
+</center>
+{% endblock %}
+</html>

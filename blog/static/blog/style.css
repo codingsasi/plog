@@ -1,0 +1,111 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.content {
+  padding: 1%;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.tile {
+  border: 1px solid #EEEEEE;
+  border-radius: 4px;
+  padding: 2%;
+  margin-bottom: 30px;
+}
+
+.button-link {
+  display: inline-block;
+  padding: 0 10px;
+  color: #555;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #F5F5F5;
+}
+
+.button-link:hover {
+  background-color: #EEEEEE;
+}
+
+.header {
+  height: 50px;
+  background-color: #EEEEEE;
+}
+
+.header-tile {
+  height: 50px;
+  display: inline-block;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  /*padding: 0 70px;*/
+  padding: 0 39%;
+  background-color: #EEEEEE;
+}
+
+.header-tile:hover {
+  background-color: #E1E1E1;
+}
+
+input[type=submit].submit {
+  margin-left: 8%;
+  margin-right: 9%;
+}
+
+center.login-popup {
+  width: 100%;
+  height: 100%;
+  background: gray;
+  opacity: 0.9;
+  z-index: 999999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-left: 32%;
+  padding-top: 5%;
+}
+
+center.signup-popup {
+  width: 100%;
+  height: 100%;
+  background: gray;
+  opacity: 0.9;
+  z-index: 999999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-left: 32%;
+  padding-top: 5%;
+}
+
+span.cross {
+  width: 5px;
+  height: 5px;
+  background: #E5E5E5;
+}
