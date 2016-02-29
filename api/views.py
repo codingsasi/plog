@@ -11,7 +11,6 @@ from rest_framework.generics import (ListAPIView, ListCreateAPIView, RetrieveUpd
 import datetime
 from django.utils import timezone
 from blog.models import Story, Vote, Comment
-from blog.views import *
 from api.serializers import StorySerializer, CommentSerializer, VoteSerializer, LoginSerializer, UserSerializer
 from api.permissions import IsAuthorOrReadOnly
 from rest_framework import permissions
