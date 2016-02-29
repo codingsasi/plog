@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+  <div class="content">
+    <div class="row">
+      <form class="twelve columns" id="submit-story" action="{% url 'api-submit' %}" method="post">{% csrf_token %}
+        <div class="row">
+          <input type="text" placeholder="Story Title" name="story_title" id="story_title" class="nine columns" required>
+        </div>
+        <div class="row">
+          <input type="url" placeholder="Story Link" name="story_link" id="story_link" class="nine columns" required>
+        </div>
+        <div class="row">
+          <input type="submit" name="submit" id="submit" value="Submit" class="six columns">
+          <input type="hidden" name="user" id="user" value="{{request.user.id}}">
+          <input type="hidden" name="pub_date" id="pub_date" value="{{ pub_date }}">
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

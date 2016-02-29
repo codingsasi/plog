@@ -1,0 +1,69 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+  <div class="content">
+    <section class="row story">
+      <div class="twelve columns">
+        <div class="tile">
+          <table class="row">
+            <div>
+              <a href="{{ story.story_link }}" target="_blank" class="button-link">{{ story.story_title }}</a>
+            </div>
+          </table>
+          <div class="meta-data">
+            {% if story_long_title == None %}
+              <h4>{{ story.story_title }}</h4>
+            {% else %}
+              <h4>{{ story_long_title }}</h4>
+            {% endif %}
+
+            {% if story_teaser == None %}
+              <p>{% lorem 1 p %} ...</p>
+            {% else %}
+              <p>{{ story_teaser }}</p>
+            {% endif%}
+          </div>
+          <div class="row">
+            <div class="twelve columns">
+              <form method="POST" action="{% url 'vote' %}">{% csrf_token %}
+                <div class="row">
+                  <input type="submit" name="vote" id="vote" value="upvote" class="three columns">
+                  <span class="one columns">{{ story.upvotes  }}</span>
+                  <input type="hidden" name="story" id="story" value="{{ story.id }}">
+                  <input type="hidden" name="user" id="user" value="{{ request.user.id }}">
+                  <input type="submit" name="vote" id="vote" value="downvote" class="three columns">
+                  <span class="one columns">{{ story.downvotes }}</span>
+                  <a href="{% url 'story' story.id %}" class="four columns button">
+                    <span class="six columns">Comments</span>
+                    <span class="one column">|</span>
+                    <span class="five columns">{{ comment_count }}</span>
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="comments">
+        {% for comment in comments %}
+          <div class="tile">
+            <strong>{{ comment.comment_title }}</strong>
+            <p>{{ comment.comment_body }}</p>
+            <em>.. {{ comment.user }}</em>
+          </div>
+        {% endfor %}
+        </div>
+        <br><hr><br>
+        <div class="add-comment">
+          <form class="twelve columns" id="add-comment" action="{% url 'api-comments' story.id %}" method="POST">{% csrf_token %}
+            <input type="text" name="comment_title" id="comment_title" class="twelve columns" placeholder="Subject" required>
+            <textarea name="comment_body" id="comment_body" class="twelve columns" placeholder="Your comment here." required></textarea>
+            <input type="hidden" name="user" id="user" value="{{ request.user.id }}">
+            <input type="hidden" name="story" id="story" value="{{ story.id }}">
+            <input type="submit" name="submit" id="submit" value="Add Comment" class="four columns right">
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </div>
+{% endblock %}

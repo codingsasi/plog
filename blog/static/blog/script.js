@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $('#login-form').submit(function(event){
+  /*$('#login-form').submit(function(event){
     event.preventDefault();
     console.log('Its happening');
     create_post();
@@ -9,7 +9,7 @@ $(document).ready(function(){
   function create_post() {
     console.log("create post is working!") // sanity check
     console.log($('input[name=username]').val())
-  };
+  };*/
 
   $("a#login").on("click", function () {
     $("center#login-popup").show();

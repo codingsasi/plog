@@ -64,8 +64,8 @@ body {
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
-  /*padding: 0 70px;*/
-  padding: 0 39%;
+  float: right;
+  padding: 0 35%;
   background-color: #EEEEEE;
 }
 

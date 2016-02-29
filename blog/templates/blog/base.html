@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load rest_framework %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,12 +15,22 @@
   <div class="header row">
     <div class="twelve columns">
       <a href="/" class="two columns"><div class="header-tile">Plog</div></a>
+      <a href="{% url 'submit' %}" class="two columns"><div class="header-tile">Submit Story</div></a>
+      {% if not request.user.id %}
       <a href="javascript:void(0);" class="two columns right" id="signup" style="margin-left:0;">
         <div class="header-tile">Sign Up</div>
       </a>
       <a href="javascript:void(0);" class="two columns right" id="login">
         <div class="header-tile">Login</div>
       </a>
+      {% else %}
+      <a href="javascript:void(0);" class="two columns right" id="username" style="margin-left:0;">
+        <div class="header-tile">{{ request.user.username }}</div>
+      </a>
+      <a href="{% url 'logout' %}" class="two columns right" id="logout">
+        <div class="header-tile">Logout</div>
+      </a>
+      {% endif %}
     </div>
   </div>
   <div class="content container">
@@ -35,7 +46,7 @@
 <center class="login-popup hidden" id="login-popup">
   <a href="javascript:void(0);" id="close-login-popup"><span class="cross">X</span> Close</a>
   <div class="login-block twelve columns">
-    <form id="login-form" action="" method="POST">
+    <form id="login-form" action="{% url 'login' %}" method="POST" novalidate>{% csrf_token %}
       <div class="login-inner one-half column">
         <div class="row">
           <input type="text" name="username" placeholder="User Name" class="eight columns">
@@ -55,7 +66,7 @@
 <center class="signup-popup hidden" id="signup-popup">
   <a href="javascript:void(0);" id="close-signup-popup"><span class="cross">X</span> Close</a>
   <div class="signup-block twelve columns">
-    <form id="signup-form" action="" method="POST">
+    <form id="signup-form" action="{% url 'signup' %}" method="POST" novalidate>{% csrf_token %}
       <div class="signup-inner one-half column">
         <div class="row">
           <input type="text" name="username" placeholder="User Name" class="eight columns">

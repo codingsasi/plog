@@ -10,7 +10,7 @@ class Story(models.Model):
     page. IF 'no_promote' field  is checked, then it will not be displayed on the
     front page even if the story has max votes.
     """
-    user = models.ForeignKey(User)
+    user = models.ForeignKey('auth.User', related_name='stories')
     story_title = models.CharField(max_length=255)
     story_link = models.URLField(max_length=500)
     pub_date = models.DateTimeField('date published')
@@ -21,24 +21,40 @@ class Story(models.Model):
     def __str__(self):
         return self.story_title
 
-    def get_upvotes(user):
-        return 1
-
-    def get_downvotes(user):
-        return -1
+    def update_votes(story_id, upvotes, downvotes):
+        story = Story.objects.get(id=story_id)
+        story.upvotes = upvotes
+        story.downvotes = downvotes
+        story.save()
 
 class Vote(models.Model):
-
-    vote = models.BooleanField()
+    """
+    The object vote. Every user has one vote for every Story object.
+    """
+    vote = models.SmallIntegerField()
     story = models.ForeignKey(Story)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey('auth.User', related_name='votes')
+
+    def get_upvotes(story_id):
+        votes = Vote.objects.filter(story_id=story_id, vote=1)
+        return votes.count()
+
+    def get_downvotes(story_id):
+        votes = Vote.objects.filter(story_id=story_id, vote=-1)
+        return votes.count()
 
 class Comment(models.Model):
-
+    """
+    The object comment. Every user can comment on any story.
+    """
     comment_title  = models.CharField(max_length=255)
     comment_body = models.TextField()
     story = models.ForeignKey(Story)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey('auth.User', related_name='comments')
 
     def __str__(self):
         return self.comment_title
+
+    def get_comment_count(story_id):
+        comments = Comment.objects.filter(story_id=story_id)
+        return comments.count()

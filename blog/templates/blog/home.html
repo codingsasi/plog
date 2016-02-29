@@ -6,26 +6,24 @@
     <div class="tile">
       <table class="row">
         <div class="">
-          <a href="{{story.story_link}}" target="_blank" class="button-link">{{story.story_title}}</a>
+          <a href="{{story.story_link}}" target="_blank" class="button-link">{{ story.story_title }}</a>
         </div>
       </table>
       <div class="row">
         <div class="twelve columns">
-          <a href="#" class="four columns button">
-            <span class="six columns">Upvote</span>
-            <span class="one column">|</span>
-            <span class="five columns">{{story.upvotes}}</span>
-          </a>
-          <a href="#" class="four columns button">
-            <span class="six columns">Downvote</span>
-            <span class="one column">|</span>
-            <span class="five columns">{{story.downvotes}}</span>
-          </a>
-          <a href="#" class="four columns button">
-            <span class="six columns">Comments</span>
-            <span class="one column">|</span>
-            <span class="five columns">{{123}}</span>
-          </a>
+          <form method="POST" action="{% url 'vote' %}">{% csrf_token %}
+            <div class="row">
+              <input type="submit" name="vote" id="vote" value="upvote" class="three columns">
+              <span class="one columns">{{ story.upvotes }}</span>
+              <input type="hidden" name="story" id="story" value="{{ story.id }}">
+              <input type="hidden" name="user" id="user" value="{{ request.user.id }}">
+              <input type="submit" name="vote" id="vote" value="downvote" class="three columns">
+              <span class="one columns">{{ story.downvotes }}</span>
+              <a href="{% url 'story' story.id %}" class="three columns button">
+                <span class="six columns">Comments</span>
+              </a>
+            </div>
+          </form>
         </div>
       </div>
     </div>
