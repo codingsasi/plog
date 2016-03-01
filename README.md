@@ -22,7 +22,7 @@ From the site root, run:
 python3 manage.py migrate
 python3 manage.py collectstatic
 python3 manage.py createsupersuser
-# Fill in the prompted fields
+Note: Fill in the prompted fields
 
 Collectstatic will collect all your static files and consolidate it into a single folder.
 Beforing running collectstatic, make sure you have set the STATIC_ROOT directive in settings.py to the folder where you want to consolidate the static files.
