@@ -39,12 +39,9 @@ class Login(ListAPIView):
         serializer = UserSerializer(user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-def signup(request):
-    return HttpResponseRedirect(reverse('home'))
-
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect(reverse('home'))
+    return HttpResponseRedirect(reverse('blog.views.home'))
 
 class StoryList(ListAPIView):
     """

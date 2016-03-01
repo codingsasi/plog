@@ -10,5 +10,4 @@ urlpatterns = [
     #url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^login/$', views.Login.as_view(), name='api-login'),
     url(r'^logout/$', views.logout_view, name='logout'),
-    url(r'^signup/$', views.signup, name='api-signup'),
 ]

@@ -70,6 +70,7 @@ def signup_view(request):
             return HttpResponseRedirect('/')
     logout(request)
     user = User.objects.create_user('username', 'email', 'password')
+    login(request, user)
     return render_to_response('login.html',{'username': username}, context_instance=RequestContext(request))
 
 def vote(request):
